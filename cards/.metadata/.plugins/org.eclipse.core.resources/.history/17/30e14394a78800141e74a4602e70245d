@@ -1,0 +1,13 @@
+package com.scottdavidson.cards.util;
+
+public interface GeneralDeck {
+
+	public abstract void shuffle();
+
+	public abstract Card dealCard();
+
+	public abstract String show();
+
+	public abstract String conciseShow();
+
+}

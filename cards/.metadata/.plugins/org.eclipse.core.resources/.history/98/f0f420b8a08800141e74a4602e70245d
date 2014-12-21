@@ -1,0 +1,65 @@
+package com.scottdavidson.cards.util;
+
+import com.scottdavidson.cards.util.Card.Suit;
+
+public class Deck {
+
+	private final Card[] cards;
+
+	public static Deck newShuffledDeck() {
+		return null;
+	}
+
+	public static Deck newShuffledDeckWithJokers() {
+		return null;
+	}
+
+	public void shuffle() {
+
+	}
+
+	public String show() {
+		StringBuilder displayDeck = new StringBuilder();
+
+		int lineCount = 0;
+		for (Card card : this.cards) {
+			displayDeck.append(card.toString()).append(" ");
+
+			if (lineCount == 13) {
+				displayDeck.append("\n");
+				lineCount = 0;
+			} else {
+				lineCount += 1;
+			}
+		}
+
+		return displayDeck.toString();
+	}
+
+	private Deck() {
+		this(false);
+	}
+
+	private Deck(boolean withJokers) {
+
+		// If using jokers, we need 54 cards, otherwise, 52
+		int totalNumberOfCards = 52;
+		if (withJokers) {
+			totalNumberOfCards = 54;
+		}
+
+		// Instantiate the deck
+		this.cards = new Card[totalNumberOfCards];
+
+		// Insert the cards sequentially (b/c it's easy and
+		// we'll rely on the shuffle operation to shuffle them :-)
+		for (Suit suit : Suit.values()) {
+
+			for (int cardValue = Card.ACE; cardValue <= Card.KING; cardValue++) {
+				this.cards[suit.ordinal() * 13 + cardValue] = Card.newCard(
+						cardValue, suit);
+			}
+		}
+	}
+
+}

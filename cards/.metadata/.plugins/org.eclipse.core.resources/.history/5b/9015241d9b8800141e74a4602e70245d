@@ -1,0 +1,17 @@
+package com.scottdavidson.cards.util;
+
+public class Card {
+	
+	private final String value;
+	private final Suit suit;
+
+	public static Card newCard(String value, Suit suit) {
+		return new Card(value, suit);
+		
+	}
+	
+	private Card(String value, Suit suit) {
+		this.value = value;
+		this.suit = suit;
+	}
+}

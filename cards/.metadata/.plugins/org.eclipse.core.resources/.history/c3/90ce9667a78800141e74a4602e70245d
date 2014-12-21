@@ -1,0 +1,31 @@
+package com.scottdavidson.cards.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class DeckTest {
+
+	@Test
+	public void testBasicDeck() {
+
+		IDeck deck = SingleDeck.newShuffledDeckWithJokers();
+		System.out.println("DECK \n" + deck.show());
+
+		try {
+
+			while (true) {
+				System.out.println(deck.dealCard().toString());
+			}
+
+		} catch (IllegalStateException ise) {
+			System.out.println(" -- done -- ");
+		}
+		
+		deck.shuffle();
+		System.out.println("SHUFFLED DECK \n" + deck.show());
+		System.out.println("SHUFFLED DECK \n" + deck.conciseShow());
+
+	}
+
+}

@@ -1,0 +1,104 @@
+package com.scottdavidson.cards.util;
+
+import com.scottdavidson.cards.util.Card.Suit;
+
+public class Deck {
+
+	private final Card[] cards;
+	private int usedCardsIndex = 0;
+
+	public static Deck newUnshuffledDeck() {
+		return new Deck();
+	}
+
+	public static Deck newUnshuffledDeckWithJokers() {
+		return new Deck(true);
+	}
+
+	public static Deck newShuffledDeck() {
+		Deck deck = newUnshuffledDeck();
+		
+		return deck;
+	}
+
+	public static Deck newShuffledDeckWithJokers() {
+		Deck deck = newUnshuffledDeckWithJokers();
+		return deck;
+	}
+
+	public void shuffle() {
+		
+        for ( int i = cards.length-1; i > 0; i-- ) {
+            int rand = (int)(Math.random()*(i+1));
+            Card temp = cards[i];
+            cards[i] = cards[rand];
+            cards[rand] = temp;
+        }
+
+
+	}
+	
+	public Card dealCard() {
+		
+		// Error check 
+		if ( this.usedCardsIndex >= this.cards.length ) {
+			throw new IllegalStateException("No more cards left to deal");
+		}
+		
+		Card returnCard = cards[this.usedCardsIndex];
+		this.usedCardsIndex += 1;
+		
+		return returnCard;
+	}
+
+	public String show() {
+		StringBuilder displayDeck = new StringBuilder();
+
+		int lineCount = 0;
+		for (Card card : this.cards) {
+			displayDeck.append(card.toString()).append(" ");
+
+			if (lineCount == 12) {
+				displayDeck.append("\n");
+				lineCount = 0;
+			} else {
+				lineCount += 1;
+			}
+		}
+
+		return displayDeck.toString();
+	}
+
+	private Deck() {
+		this(false);
+	}
+
+	private Deck(boolean withJokers) {
+
+		// If using jokers, we need 54 cards, otherwise, 52
+		int totalNumberOfCards = 52;
+		if (withJokers) {
+			totalNumberOfCards = 54;
+		}
+
+		// Instantiate the deck
+		this.cards = new Card[totalNumberOfCards];
+
+		// Insert the cards sequentially (b/c it's easy and
+		// we'll rely on the shuffle operation to shuffle them :-)
+		for (Suit suit : Suit.values()) {
+
+			for (int cardValue = Card.ACE; cardValue <= Card.KING; cardValue++) {
+				this.cards[suit.ordinal() * 13 + cardValue - 1] = Card.newCard(
+						cardValue, suit);
+			}
+		}
+		
+		// If there are jokers
+		if ( withJokers ) {
+			this.cards[52] = Card.newJoker();
+			this.cards[53] = Card.newJoker();
+		}
+	}
+
+}

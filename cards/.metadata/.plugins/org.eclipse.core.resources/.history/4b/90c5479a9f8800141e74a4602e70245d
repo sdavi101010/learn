@@ -1,0 +1,16 @@
+package com.scottdavidson.cards.util;
+
+public class Deck {
+	
+	private final Card[] cards;
+	
+	public static Deck newRandomDeck() {
+		return null;
+	}
+
+	
+	private Deck() {
+		this.cards= new Card[]();
+	}
+	
+}

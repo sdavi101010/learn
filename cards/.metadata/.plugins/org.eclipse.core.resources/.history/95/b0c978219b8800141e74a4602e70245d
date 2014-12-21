@@ -1,0 +1,6 @@
+package com.scottdavidson.cards.util;
+
+public enum Suit {
+	HEARTS, DIAMONDS, SPADES, CLUBS
+
+}
