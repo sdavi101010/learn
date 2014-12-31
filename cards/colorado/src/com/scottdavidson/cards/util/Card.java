@@ -1,5 +1,8 @@
 package com.scottdavidson.cards.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Card {
 
 	public enum Suit {
@@ -31,6 +34,10 @@ public class Card {
 
 	public int getValue() {
 		return value;
+	}
+
+	public boolean isJoker() {
+		return this.value == JOKER;
 	}
 
 	public String getValueAsString() {
@@ -74,13 +81,92 @@ public class Card {
 	}
 
 	public String conciseToString() {
+		return conciseToString(true);
+	}
+
+	public String conciseToString(boolean withCurlyBraces) {
+
+		StringBuilder builder = new StringBuilder();
+
+		// Opening curly brace (if requested)
+		if (withCurlyBraces) {
+			builder.append("{ ");
+		}
 
 		// If a Joker
 		if (getValue() == JOKER) {
-			return "{ " + getValueAsString() + " }";
+			builder.append(getValueAsString());
+		} else if ( getValue() == 10 ) {
+			String valueAsConciseString = "X";
+			String suitAtConciseString = getSuit().toString().substring(0, 1);
+			builder.append(valueAsConciseString).append(":")
+					.append(suitAtConciseString);
 		} else {
-			return "{ " + getValueAsString() + ":" + getSuit().toString().substring(0,1) + " }";
+			String valueAsConciseString = getValueAsString().substring(0, 1);
+			String suitAtConciseString = getSuit().toString().substring(0, 1);
+			builder.append(valueAsConciseString).append(":")
+					.append(suitAtConciseString);
 		}
+
+		// Closing curly brace (if requested)
+		if (withCurlyBraces) {
+			builder.append(" }");
+		}
+
+		return builder.toString();
+
+	}
+
+	/**
+	 * Generates a pretty version of the card for character display as follows:
+	 * 
+	 * @return character graphic representing the card in the form of an array
+	 *         of lines.
+	 */
+	public List<String> prettyPrint() {
+
+		List<String> result = new ArrayList<String>();
+
+		// Top
+		result.add("---------");
+
+		// Row 2
+		result.add("|       |");
+
+		// Row 3 (w/ the value)
+		result.add("|  " + conciseToString(false) + "  |");
+
+		// Row 4
+		result.add("|       |");
+
+		// Bottom
+		result.add("---------");
+
+		return result;
+
+	}
+
+	public static List<String> prettyPrintNullCard() {
+
+		List<String> result = new ArrayList<String>();
+
+		// Top
+		result.add("---------");
+
+		// Row 2
+		result.add("|       |");
+
+		// Row 3 (w/ the value)
+		result.add("|  ---  |");
+
+		// Row 4
+		result.add("|       |");
+
+		// Bottom
+		result.add("---------");
+
+		return result;
+
 	}
 
 	@Override

@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh3680\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Lecture 3 - Goal Trees / Rules Based Expert Systems\
+( http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/lecture-videos/lecture-3-reasoning-goal-trees-and-rule-based-expert-systems )\
+\
+* From before - name it so you have power over it !\
+\
+* Complexity(System) = max (C(program), C(environment))\
+* To answer questions about reasoning, leave behind a TRACE in the form of a GOAL TREE\
+* Goal Tree\
+   -- Using recursion you can appear to have high complexity w/ simple rules\
+   -- Why questions - look up goal tree\
+   -- How questions - look down goal tree\
+* Terry Winograd \
+    -- blocks application (duplicate it!!)\
+    -- look up what he's doing @ Stanford now\
+    -- Mycin ? (expert system for blood disease)\
+* Forward Chaining Rule-based Expert System \
+   -- e.g., small zoo (first example)\
+   -- "expert" is a marketing term, really more "novice"\
+   -- from facts to conclusion (hence forward)\
+   -- this is a goal tree and therefore should be able to answer questions about its reasoning\
+\
+* Backward Chaining Rule-based Expert System\
+   -- working backwards from a hypothesis towards the facts\
+\
+* Note: for either Forward or Backward, it's a deduction system which works w/ facts to produce new facts (but never take things away). Once something is proven, you can't take it back.\
+* Note: there can be other systems though which are not deduction b/c you can add and remove facts - \
+   -- Mycin : \
+   -- Siza or Duarte's Program - (Jose Duarte wrote rule based system to generate housing and then asked Siza if he could tell which ones he designed :-) )\
+   -- Groceries in a bag --> same issue ?\
+       --> large items in the bottom\
+       --> small things on top :-) \
+       --> not too many heavy items in single bag\
+       --> no squishes on the bottom\
+\
+Knowledge Engineering Rules (or Heuristics)\
+   -- ask about specific cases (don't just speak to experts, observe actuals)\
+   -- ask about things that appear to be the same but handled differently\
+   -- build system and run it until it breaks which indicates a missing rule\
+\
+Conclusion:\
+   -- the knowledge exhibited is really a thing veneer b/c, for example, the system doesn't know why not to put the chips on the bottom (b/c they'll get crushed and customer doesn't want to eat crushed chips)\
+   -- Mycin : prescribed a barrel of penicillin to a patient \
+   -- Rule based systems don't seem to have any "common sense"\
+   -- Elaboration Diagram (Macbeth analysis system); when looking at Hamlet, it's almost all inferred information and therefore storytelling is just a controlled hallucination\
+\
+\
+\
+ \
+}
